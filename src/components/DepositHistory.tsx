@@ -9,6 +9,16 @@ interface DepositHistoryProps {
   walletAddress?: string;
 }
 
+interface Deposit {
+  _id: string;
+  amount: number;
+  token: string;
+  status: string;
+  vaultName: string;
+  timestamp: number;
+  txHash?: string;
+}
+
 export function DepositHistory({ walletAddress }: DepositHistoryProps) {
   const deposits = useQuery(
     api.vaults.getUserDeposits,
@@ -62,12 +72,12 @@ export function DepositHistory({ walletAddress }: DepositHistoryProps) {
       <CardHeader>
         <CardTitle>Your Deposit History</CardTitle>
         <CardDescription>
-          {deposits.length} {deposits.length === 1 ? "deposit" : "deposits"} • Total: {deposits.reduce((sum, d) => sum + d.amount, 0).toFixed(2)} tokens
+          {deposits.length} {deposits.length === 1 ? "deposit" : "deposits"} • Total: {deposits.reduce((sum: number, d: Deposit) => sum + d.amount, 0).toFixed(2)} tokens
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
-          {deposits.map((deposit, index) => (
+          {deposits.map((deposit: Deposit, index: number) => (
             <motion.div
               key={deposit._id}
               initial={{ opacity: 0, x: -20 }}

@@ -42,7 +42,7 @@ export function LiveActivityFeed() {
   // Add real rebalances from database when available
   useEffect(() => {
     if (rebalances && rebalances.length > 0) {
-      const realActivities: ActivityItem[] = rebalances.slice(0, 3).map((rebalance) => ({
+      const realActivities: ActivityItem[] = rebalances.slice(0, 3).map((rebalance: { _id: string; reason?: string; timestamp: number; gasCost?: number }) => ({
         id: `real-${rebalance._id}`,
         type: "rebalance" as const,
         message: rebalance.reason || "Automated rebalancing",
@@ -65,19 +65,19 @@ export function LiveActivityFeed() {
       const protocol = protocols[Math.floor(Math.random() * protocols.length)];
       const newActivity: ActivityItem = Math.random() > 0.6
         ? {
-            id: Date.now().toString(),
-            type: "deposit",
-            message: `New deposit on Polygon Mainnet`,
-            time: "Just now",
-            amount: `${(Math.random() * 10).toFixed(2)} USDC`
-          }
+          id: Date.now().toString(),
+          type: "deposit",
+          message: `New deposit on Polygon Mainnet`,
+          time: "Just now",
+          amount: `${(Math.random() * 10).toFixed(2)} USDC`
+        }
         : {
-            id: Date.now().toString(),
-            type: "rebalance",
-            message: `Rebalanced allocation to ${protocol}`,
-            time: "Just now",
-            amount: `$${(Math.random() * 5000).toFixed(0)}`
-          };
+          id: Date.now().toString(),
+          type: "rebalance",
+          message: `Rebalanced allocation to ${protocol}`,
+          time: "Just now",
+          amount: `$${(Math.random() * 5000).toFixed(0)}`
+        };
 
       setActivities(prev => [newActivity, ...prev.slice(0, 9)]);
     }, 15000);

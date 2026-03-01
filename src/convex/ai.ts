@@ -12,9 +12,9 @@ export const predictYield = action({
       // Fetch current strategies and vaults for real-time data
       const strategies = await ctx.runQuery(internal.vaults.getStrategiesInternal);
       const vaults = await ctx.runQuery(internal.vaults.getVaultsInternal);
-      
+
       // Build dynamic market data from database
-      const marketData = strategies.map(s => 
+      const marketData = strategies.map((s: { name: string; chain: string; currentApy: number; riskScore: number; tvl: number }) =>
         `- ${s.name} (${s.chain}): ${s.currentApy}% APY, Risk Score: ${s.riskScore}/10, TVL: $${s.tvl.toLocaleString()}`
       ).join('\n');
 
@@ -66,11 +66,11 @@ ${Object.entries(currentAllocation).map(([name, pct]) => `- ${name}: ${pct}%`).j
           // Clean up markdown if present
           const jsonStr = content.replace(/```json/g, '').replace(/```/g, '');
           const prediction = JSON.parse(jsonStr);
-          
+
           return prediction;
         }
       }
-      
+
       // Fallback to default prediction
       return {
         timestamp: Date.now(),
