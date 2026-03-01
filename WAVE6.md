@@ -3,7 +3,6 @@
 ## Overview
 
 Wave 6 focused on a complete visual redesign of the landing page, adopting a **brutalist terminal aesthetic** that distinguishes the platform from generic DeFi UIs. All sections were rebuilt from scratch with a consistent dark theme, monospace typography, grid backgrounds, and scanline overlays.
-
 ---
 
 ## Changes Made
