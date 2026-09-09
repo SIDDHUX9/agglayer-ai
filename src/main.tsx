@@ -1,7 +1,4 @@
-import '@vly-ai/integrations';
 import { Toaster } from "@/components/ui/sonner";
-import { VlyToolbar } from "../vly-toolbar-readonly.tsx";
-import { InstrumentationProvider } from "@/instrumentation.tsx";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { ConvexReactClient } from "convex/react";
 import { StrictMode, useEffect, lazy, Suspense } from "react";
@@ -83,42 +80,39 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <VlyToolbar />
-    <InstrumentationProvider>
-      <NetworkProvider>
-        <WagmiProvider config={config}>
-          <QueryClientProvider client={queryClient}>
-            <ConvexAuthProvider client={convex}>
-              <BrowserRouter>
-                <RouteSyncer />
-                <Suspense fallback={<RouteLoading />}>
-                  <Routes>
-                    <Route path="/" element={<Landing />} />
-                    <Route path="/auth" element={<AuthPage redirectAfterAuth="/dashboard" />} />
-                    <Route
-                      path="/dashboard"
-                      element={<Dashboard />}
-                    />
-                    <Route
-                      path="/vaults"
-                      element={<Vaults />}
-                    />
-                    <Route
-                      path="/strategies"
-                      element={<Strategies />}
-                    />
-                    <Route path="/whitepaper" element={<Whitepaper />} />
-                    <Route path="/download" element={<DownloadPage />} />
-                    <Route path="/deploy-guide" element={<DeployGuide />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </Suspense>
-              </BrowserRouter>
-              <Toaster />
-            </ConvexAuthProvider>
-          </QueryClientProvider>
-        </WagmiProvider>
-      </NetworkProvider>
-    </InstrumentationProvider>
+    <NetworkProvider>
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <ConvexAuthProvider client={convex}>
+            <BrowserRouter>
+              <RouteSyncer />
+              <Suspense fallback={<RouteLoading />}>
+                <Routes>
+                  <Route path="/" element={<Landing />} />
+                  <Route path="/auth" element={<AuthPage redirectAfterAuth="/dashboard" />} />
+                  <Route
+                    path="/dashboard"
+                    element={<Dashboard />}
+                  />
+                  <Route
+                    path="/vaults"
+                    element={<Vaults />}
+                  />
+                  <Route
+                    path="/strategies"
+                    element={<Strategies />}
+                  />
+                  <Route path="/whitepaper" element={<Whitepaper />} />
+                  <Route path="/download" element={<DownloadPage />} />
+                  <Route path="/deploy-guide" element={<DeployGuide />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+            <Toaster />
+          </ConvexAuthProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+    </NetworkProvider>
   </StrictMode>,
 );

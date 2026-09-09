@@ -1,7 +1,7 @@
 {
-  "name": "vly.ai application",
-  "short_name": "vly.ai",
-  "description": "vly.ai application",
+  "name": "AggLayer AI",
+  "short_name": "AggLayer AI",
+  "description": "AggLayer AI Cross-Chain Yield Optimizer",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

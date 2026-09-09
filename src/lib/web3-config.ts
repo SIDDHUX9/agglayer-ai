@@ -103,9 +103,13 @@ function customInjected() {
 
     async getChainId() {
       const provider = window.ethereum;
-      if (!provider) throw new Error('No injected provider found');
-      const chainId = await provider.request({ method: 'eth_chainId' });
-      return Number(chainId);
+      if (!provider) return polygonAmoy.id;
+      try {
+        const chainId = await provider.request({ method: 'eth_chainId' });
+        return Number(chainId);
+      } catch {
+        return polygonAmoy.id;
+      }
     },
 
     async isAuthorized() {

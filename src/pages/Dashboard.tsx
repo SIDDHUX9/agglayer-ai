@@ -65,6 +65,9 @@ export default function Dashboard() {
 
   const { data: balance } = useBalance({
     address: address as `0x${string}`,
+    query: {
+      enabled: !!address,
+    },
   });
   const metrics = useQuery(api.vaults.getMetrics);
   const vaults = useQuery(api.vaults.getVaults);
@@ -80,6 +83,9 @@ export default function Dashboard() {
     abi: MASTER_VAULT_ABI,
     functionName: 'totalAssets',
     chainId: ACTIVE_CONTRACTS.MASTER_VAULT.chainId,
+    query: {
+      enabled: ACTIVE_CONTRACTS.MASTER_VAULT.address.length > 0,
+    },
   });
 
   // Read real TVL from POL vault

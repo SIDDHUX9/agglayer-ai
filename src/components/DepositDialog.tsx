@@ -39,7 +39,12 @@ export function DepositDialog({ vaultId, vaultName }: DepositDialogProps) {
 
   const { address, chainId } = useAccount();
   const { writeContractAsync } = useWriteContract();
-  const { data: balance } = useBalance({ address: address as `0x${string}` });
+  const { data: balance } = useBalance({
+    address: address as `0x${string}`,
+    query: {
+      enabled: !!address,
+    },
+  });
   const depositMutation = useMutation(api.vaults.deposit);
 
   // Read USDC balance
@@ -49,6 +54,9 @@ export function DepositDialog({ vaultId, vaultName }: DepositDialogProps) {
     functionName: 'balanceOf',
     args: address ? [address] : undefined,
     chainId: ACTIVE_CONTRACTS.MOCK_USDC.chainId,
+    query: {
+      enabled: !!address && ACTIVE_CONTRACTS.MOCK_USDC.address.length > 0,
+    },
   });
 
   const isContractConfigured = ACTIVE_CONTRACTS.MASTER_VAULT.address.length > 0;
