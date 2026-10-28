@@ -3,6 +3,8 @@
 # 🚀 AggLayer Yield AI
 
 ### Cross-Chain Yield Optimization with Automated Rebalancing
+<img width="1838" height="971" alt="image" src="https://github.com/user-attachments/assets/4763458c-2d7b-4686-b2d8-4961fe0a6149" />
+
 
 [![Live on Polygon](https://img.shields.io/badge/🟣_Polygon-Live_on_Amoy-8247E5?style=for-the-badge)](https://amoy.polygonscan.com/address/0x831F6F30cc0Aa68a9541B79c2289BF748DEC4a2a)
 [![TVL](https://img.shields.io/badge/💰_TVL-Real--Time-00D9FF?style=for-the-badge)](https://amoy.polygonscan.com/address/0x831F6F30cc0Aa68a9541B79c2289BF748DEC4a2a)
